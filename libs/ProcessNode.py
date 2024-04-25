@@ -26,7 +26,10 @@ class ProcessNode:
 
     def rcv(self, _from, msg):
         pass
-
+    
+    def __str__(self):
+        return "%d" % self.id
+    
     @staticmethod
     def getCounter():
         ProcessNode.total_nodes += 1
