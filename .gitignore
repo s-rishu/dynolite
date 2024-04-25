@@ -29,3 +29,7 @@ target/
 
 #ide files
 .idea/
+
+#python files
+*/__pycache__/
+__pycache__/
