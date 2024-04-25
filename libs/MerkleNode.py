@@ -19,7 +19,7 @@ class MerkleNode:
     
     def hash(self):
         if self.is_leaf_node():
-            self.digest = hashlib.md5(str(self.data)).digest()
+            self.digest = hashlib.md5(str(self.data).encode()).digest()
         else:
             self.digest = hashlib.md5(self.left.digest + self.right.digest).digest()
 
