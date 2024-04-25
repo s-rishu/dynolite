@@ -1,3 +1,5 @@
+import logging
+logger = logging.getLogger("dynolite")
 class VectorClock: 
     def __init__(self):
         self.clock = {}
@@ -7,6 +9,13 @@ class VectorClock:
             self.clock[nodeId] += 1
         else:
             self.clock[nodeId] = 1
+    
+    def update(self, nodeId, value):
+        if nodeId in self.clock and self.clock[nodeId] < value: 
+            self.clock[nodeId] = value
+        else:
+            logger.error("Vector clock travelling in past for node %d, past: %d, new: %d", 
+                         nodeId, self.clock[nodeId], value)
     
     def __str__(self):
         return "{%s}" % ", ".join(["Node %d:%d" % (nodeId, self.clock[nodeId])

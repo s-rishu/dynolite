@@ -1,5 +1,6 @@
 import logging
 from libs import MerkleTree
+from utils import VectorClock
 
 logger = logging.getLogger("dynolite")
 
@@ -11,6 +12,7 @@ class ProcessNode:
         self.alive = True
         self.id = ProcessNode.getCounter(self)
         self.merkle = MerkleTree(config["merkle_config"])
+        self.clock = VectorClock()
         self.preference_list = config["preference_list"]
         logger.debug("Created Node with id: %d", self.id)
 
