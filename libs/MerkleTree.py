@@ -76,3 +76,6 @@ class MerkleTree:
     def keyhash(self, key):
         hashval = hashlib.md5(str(key).encode())
         return int(hashval.hexdigest(), 16)
+    
+    def __str__(self):
+        return self.root

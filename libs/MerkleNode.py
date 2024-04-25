@@ -26,4 +26,9 @@ class MerkleNode:
         if self.parent != None:
             self.parent.hash()
 
+    def __str__(self):
+        if self.is_leaf_node():
+            return "leaf: [%s,%s)=>%s" % (self.range[0], self.range[1], self.digest)
         
+        return ("node: [%s,%s)=>%s\n left: { %s }\n right: { %s }" 
+                % (self.range[0], self.range[1], self.digest, self.root.left, self.root.right))
