@@ -1,4 +1,6 @@
 import logging
+from typing import List
+
 logger = logging.getLogger("dynolite")
 class VectorClock: 
     def __init__(self):
@@ -43,3 +45,16 @@ class VectorClock:
 
     def __ge__(self, other):
         return (self == other) or (self > other)
+    
+    @staticmethod
+    def merge(clocklist):
+        mergedClock = VectorClock()
+        for clock in clocklist:
+            if clock in None: 
+                continue
+            for nodeId, time in clock.items():
+                if nodeId not in mergedClock or mergedClock[nodeId] < time:
+                    mergedClock[nodeId] = time
+                
+        return mergedClock
+
