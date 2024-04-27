@@ -10,7 +10,7 @@ class ProcessNode:
     def __init__(self, config):
         self.config = config
         self.alive = True
-        self.id = ProcessNode.getCounter(self)
+        self.id = ProcessNode.getCounter()
         self.merkle = MerkleTree(config["merkle_config"])
         self.clock = VectorClock()
         self.preference_list = config["preference_list"]

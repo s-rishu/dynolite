@@ -5,6 +5,7 @@ from libs import Ring
 
 # Only create one per instance of dynamo store.
 class Dynamo:
+    # Global view of the nodes in the ring.
     view = []
     virtual = 5
     ring = []

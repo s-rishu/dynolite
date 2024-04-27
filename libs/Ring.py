@@ -10,7 +10,7 @@ class Ring:
         for node in nodelist:
             for i in range(virtual):
                 nodestring = "%s:%d" % (node, i)
-                ring.append((hashlib.md5(nodestring).digest(), node))
+                ring.append((hashlib.md5(nodestring.encode()).digest(), node))
 
         self.ring = sorted(ring, key=lambda x: x[0])
         self.hashes = [p[0] for p in self.ring]
