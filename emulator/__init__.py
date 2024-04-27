@@ -1,1 +1,1 @@
-from .rest import REST
+from .network import Network

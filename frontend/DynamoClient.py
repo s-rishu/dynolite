@@ -1,7 +1,7 @@
 from libs import Message, ProcessNode
 from utils import VectorClock
 from backend import Dynamo
-from emulator import REST
+from emulator import Network
 from typing import List
 import logging
 import random
@@ -20,7 +20,7 @@ class DynamoClient:
         
         msg = Message("ClientGet", {"key": key, "type": "get", "sender": self.name})
         
-        REST.send(self.name, destNode, msg)
+        Network.send(self.name, destNode, msg)
         
         return msg
 
@@ -31,7 +31,7 @@ class DynamoClient:
         metadata = VectorClock.merge(metadata)
         msg = Message("ClientPut", {"key": key, "value": value, "metadata": metadata})
 
-        REST.send(self.name, destNode, msg)
+        Network.send(self.name, destNode, msg)
 
         return msg
 
