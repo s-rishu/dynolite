@@ -79,3 +79,21 @@ class MerkleTree:
     
     def __str__(self):
         return self.root
+    
+    def __setitem__(self, key, value):
+        leaf: MerkleNode = self.find_leaf(key)
+        leaf.data[key] = value
+        leaf.hash()
+
+    def __getitem__(self, key):
+        leaf: MerkleNode = self.find_leaf(key)
+        return leaf.data[key]
+
+    def __contains__(self, key):
+        leaf: MerkleNode = self.find_leaf(key)
+        return key in leaf.data
+
+    def __delitem__(self, key):
+        leaf: MerkleNode = self.find_leaf(key)
+        del leaf.data[key]
+        leaf.hash()
